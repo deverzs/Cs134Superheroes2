@@ -1,0 +1,40 @@
+{
+  "Games": [
+    {
+      "Name": "League of Legends",
+      "Description": "Multiplayer online battle arena",
+      "Rating": "4.5",
+      "ImageName": "lol.png"
+    },
+    {
+      "Name": "Call of Duty: Black Ops 4",
+      "Description": "First person shooter",
+      "Rating": "4.5",
+      "ImageName": "callofduty.png"
+    },
+    {
+      "Name": "Dark Souls III",
+      "Description": "Action role-playing",
+      "Rating": "4.0",
+      "ImageName": "ds3.png"
+    },
+    {
+      "Name": "The Division",
+      "Description": "Single player experience",
+      "Rating": "3.5",
+      "ImageName": "division.png"
+    },
+    {
+      "Name": "Battlefield 1",
+      "Description": "Single player campaign",
+      "Rating": "5.0",
+      "ImageName": "battlefield1.png"
+    },
+    {
+      "Name": "Doom FLH",
+      "Description": "First person shooter",
+      "Rating": "2.5",
+      "ImageName": "doomflh.png"
+    }
+  ]
+}
