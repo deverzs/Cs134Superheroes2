@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "SUPER";
     public static final int IN_QUIZ = 10;
+    public static final String QUIZ_DEFAULT = "Superhero Name" ;
     String mQuizType;
     Button mButtons[] = new Button[4];
     List<Superheroes> mAllHeroesList;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         mQuizHeroesList = new ArrayList<>(IN_QUIZ);
         rng = new SecureRandom();
         handler = new Handler();
+        mQuizType = QUIZ_DEFAULT;
 
 
         mQuestionNumberTextView = findViewById(R.id.quesionNumberTextView);
@@ -165,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         //fill all with random and then replace 1 with correct
         // DONE: Loop through all 4 buttons, enable them all and set them to the first 4 countries
         // DONE: in the all countries list
+        /*
         for (int i = 0; i < mButtons.length ; i++) {
             mButtons[i].setEnabled(true); //allows clicking - need to make sure enables
             temp = mAllHeroesList.get(i).get_mName() ;
@@ -179,10 +182,46 @@ public class MainActivity extends AppCompatActivity {
 
         // DONE: After the loop, randomly replace one of the 4 buttons with the name of the correct country
         mButtons[rng.nextInt(mButtons.length)].setText(mCorrectHero.get_mName());
+
+         */
+        updateBasedOnQuizType();
     }
     public void updateBasedOnQuizType()
     {
+        String temp;
 
+        for (int i = 0; i < mButtons.length ; i++) {
+            mButtons[i].setEnabled(true); //allows clicking - need to make sure enables
+            temp = mAllHeroesList.get(i).get_mName() ;
+            if(!temp.equals(mCorrectHero.get_mName()))
+            {
+                if(mQuizType.equals("Superhero Name")) {
+                    mButtons[i].setText(mAllHeroesList.get(i).get_mName());
+                }
+                else if(mQuizType.equals("One Thing")){
+                    mButtons[i].setText(mAllHeroesList.get(i).get_mOneThing());
+                }
+                else  if(mQuizType.equals("Superpower")) {
+                    mButtons[i].setText(mAllHeroesList.get(i).get_mSuperpower());
+                }
+            }
+            else
+            {
+                Collections.shuffle(mAllHeroesList);
+                i--;
+            }
+        }
+
+        // DONE: After the loop, randomly replace one of the 4 buttons with the name of the correct country
+        if(mQuizType.equals("Superhero Name")) {
+            mButtons[rng.nextInt(mButtons.length)].setText(mCorrectHero.get_mName());
+        }
+        else if(mQuizType.equals("One Thing")){
+            mButtons[rng.nextInt(mButtons.length)].setText(mCorrectHero.get_mOneThing());
+        }
+        else  if(mQuizType.equals("Superpower")) {
+            mButtons[rng.nextInt(mButtons.length)].setText(mCorrectHero.get_mSuperpower());
+        }
     }
 
 
@@ -191,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
         Button clickedButton = (Button) v;
         String guess = clickedButton.getText().toString();
         mTotalGuesses++;
-        if(guess.equals(mCorrectHero.get_mName()))
+        if(guess.equals(mCorrectHero.get_mName()) || guess.equals(mCorrectHero.get_mOneThing()) || guess.equals(mCorrectHero.get_mSuperpower()))
         {
             mCorrectGuesses++;
             for (int i = 0; i < mButtons.length ; i++) {
@@ -199,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             mAnswerTextView.setTextColor(getResources().getColor(R.color.correct_answer));
-            mAnswerTextView.setText(mCorrectHero.get_mName());
+            mAnswerTextView.setText(guess);
 
             if(mCorrectGuesses < IN_QUIZ)
             {
