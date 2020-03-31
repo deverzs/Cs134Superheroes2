@@ -238,7 +238,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             mAnswerTextView.setTextColor(getResources().getColor(R.color.correct_answer));
-            mAnswerTextView.setText(guess);
+
+            mAnswerTextView.setText(guess.toUpperCase());
 
             if(mCorrectGuesses < IN_QUIZ)
             {
